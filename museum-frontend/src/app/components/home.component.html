@@ -1,0 +1,95 @@
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-title-box">
+      <h1 class="hero-title">Museum der Counter-Strike-Turniere</h1>
+      <p class="hero-subtitle">Ernsthausen • Esports History &amp; Majors</p>
+    </div>
+
+    <div class="hero-current">
+      <div class="hero-current-label">Aktuelles / letztes Turnier</div>
+      <div class="hero-current-name">BLAST.tv Paris Major 2023</div>
+      <div class="hero-current-meta">
+        Paris, Frankreich • Sieger: Team Vitality
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <section class="main">
+    <section>
+      <header class="section-header">
+        <div>
+          <h2 class="section-title">Turniere der letzten Jahre</h2>
+          <p class="section-subtitle">
+            Übersicht nach Jahren, beginnend mit den neuesten.
+          </p>
+        </div>
+
+        <nav class="year-pagination">
+          <button
+            class="arrow-btn"
+            type="button"
+            (click)="prevYearPage()"
+            [disabled]="yearPageIndex === 0"
+          >
+            ‹
+          </button>
+
+          <span class="year-page-indicator">
+        Seite {{ yearPageIndex + 1 }} / {{ totalYearPages || 1 }}
+      </span>
+
+          <button
+            class="arrow-btn"
+            type="button"
+            (click)="nextYearPage()"
+            [disabled]="yearPageIndex >= totalYearPages - 1"
+          >
+            ›
+          </button>
+        </nav>
+      </header>
+
+      <section class="years-wrapper">
+        <section class="year-group" *ngFor="let group of visibleYearGroups">
+          <h3 class="year-heading">{{ group.year }}</h3>
+
+          <div class="tournament-row">
+            <button class="row-arrow row-arrow--left" (click)="scrollRowLeft(row)">
+              ‹
+            </button>
+
+            <div class="tournament-row__viewport" #row>
+              <article
+                class="tournament-card"
+                *ngFor="let t of group.tournaments"
+                [routerLink]="['/tournament', t.id]"
+                role="button"
+                tabindex="0"
+              >
+                <h4 class="tournament-name">
+                  {{ t.name }}
+                </h4>
+                <p class="tournament-meta">
+                  {{ t.location }} • {{ t.startDate | date: 'dd.MM.yyyy' }}
+                </p>
+                <p class="tournament-winner">Sieger: {{ t.winnerTeam }}</p>
+              </article>
+
+            </div>
+
+            <button class="row-arrow row-arrow--right" (click)="scrollRowRight(row)">
+              ›
+            </button>
+          </div>
+        </section>
+      </section>
+    </section>
+  </section>
+</main>
+
+<footer class="footer">
+  <span>Ernsthausen Counter-Strike-Turniermuseum – Prototyp einer UI/UX-orientierten Webanwendung.</span>
+</footer>

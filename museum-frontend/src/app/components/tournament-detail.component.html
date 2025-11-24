@@ -1,0 +1,123 @@
+<div class="tournament-page" *ngIf="tournament$ | async as t; else notFound">
+
+  <!-- HERO / HEADER БЛОК ТУРНИРА -->
+  <header class="tournament-hero">
+    <div
+      class="tournament-hero__image"
+      *ngIf="t.eventImageUrl; else plainHero"
+      [style.backgroundImage]="'url(' + t.eventImageUrl + ')'"
+    >
+      <div class="tournament-hero__overlay"></div>
+      <div class="tournament-hero__content">
+        <span class="tournament-pill" *ngIf="t.game">
+          {{ t.game }}
+        </span>
+        <h1 class="tournament-title">{{ t.name }}</h1>
+        <p class="tournament-subtitle">
+          {{ t.location }} •
+          <span *ngIf="t.endDate; else singleDate">
+            {{ t.startDate | date:'dd.MM.yyyy' }} – {{ t.endDate | date:'dd.MM.yyyy' }}
+          </span>
+          <ng-template #singleDate>
+            {{ t.startDate | date:'dd.MM.yyyy' }}
+          </ng-template>
+        </p>
+      </div>
+    </div>
+
+    <ng-template #plainHero>
+      <div class="tournament-hero__plain">
+        <div class="tournament-hero__content">
+          <span class="tournament-pill" *ngIf="t.game">
+            {{ t.game }}
+          </span>
+          <h1 class="tournament-title">{{ t.name }}</h1>
+          <p class="tournament-subtitle">
+            {{ t.location }} •
+            <span *ngIf="t.endDate; else singleDate2">
+              {{ t.startDate | date:'dd.MM.yyyy' }} – {{ t.endDate | date:'dd.MM.yyyy' }}
+            </span>
+            <ng-template #singleDate2>
+              {{ t.startDate | date:'dd.MM.yyyy' }}
+            </ng-template>
+          </p>
+        </div>
+      </div>
+    </ng-template>
+  </header>
+
+  <!-- ОСНОВНОЙ КОНТЕНТ -->
+  <main class="tournament-main">
+
+    <!-- ЛЕВАЯ КОЛОНКА: ОПИСАНИЕ, КАРТЫ -->
+    <section class="tournament-main__left">
+      <section class="card" *ngIf="t.description">
+        <h2 class="card__title">Über das Turnier</h2>
+        <p class="card__text">
+          {{ t.description }}
+        </p>
+      </section>
+
+      <section class="card" *ngIf="t.mapPool?.length">
+        <h2 class="card__title">Map-Pool</h2>
+        <ul class="tag-list">
+          <li class="tag" *ngFor="let map of t.mapPool">
+            {{ map }}
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ПРАВАЯ КОЛОНКА: ФАКТЫ, ТОП-4, MVP -->
+    <aside class="tournament-main__right">
+
+      <section class="card">
+        <h2 class="card__title">Turnierinfos</h2>
+        <div class="info-row" *ngIf="t.organizer">
+          <span class="info-label">Veranstalter</span>
+          <span class="info-value">{{ t.organizer }}</span>
+        </div>
+        <div class="info-row" *ngIf="t.venue">
+          <span class="info-label">Location</span>
+          <span class="info-value">{{ t.venue }}</span>
+        </div>
+        <div class="info-row" *ngIf="t.prizePoolUsd">
+          <span class="info-label">Prize Pool</span>
+          <span class="info-value">
+            $ {{ t.prizePoolUsd | number:'1.0-0' }}
+          </span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Sieger</span>
+          <span class="info-value info-value--highlight">
+            {{ t.winnerTeam }}
+          </span>
+        </div>
+        <div class="info-row" *ngIf="t.mvp">
+          <span class="info-label">MVP</span>
+          <span class="info-value">
+            {{ t.mvp }}
+          </span>
+        </div>
+      </section>
+
+      <section class="card" *ngIf="t.teamsTop4?.length">
+        <h2 class="card__title">Top 4 Teams</h2>
+        <ol class="top-list">
+          <li class="top-list__item" *ngFor="let team of t.teamsTop4; let i = index">
+            <span class="top-list__place">{{ i + 1 }}.</span>
+            <span class="top-list__team">{{ team }}</span>
+          </li>
+        </ol>
+      </section>
+
+    </aside>
+  </main>
+</div>
+
+<ng-template #notFound>
+  <div class="tournament-not-found">
+    <h1>Turnier nicht gefunden</h1>
+    <p>Das angeforderte Turnier existiert nicht oder wurde entfernt.</p>
+  </div>
+</ng-template>

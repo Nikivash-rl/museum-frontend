@@ -1,0 +1,115 @@
+<div class="tickets-page">
+  <section class="tickets-hero">
+    <div class="tickets-hero__content">
+      <h1 class="tickets-title">Tickets für Esport-Turniere</h1>
+      <p class="tickets-subtitle">
+        Wähle ein Turnier, einen Tag und deinen Bereich aus, bevor du zur Zahlung weitergehst.
+      </p>
+    </div>
+  </section>
+
+  <main class="tickets-main">
+    <!-- ЛЕВАЯ КОЛОНКА: ВЫБОР ТУРНИРА / ДАТЫ / БЛОКА -->
+    <section class="tickets-main__left">
+
+      <section class="card">
+        <h2 class="card__title">Turnier auswählen</h2>
+        <p class="card__hint">Später hier echte Daten aus dem Museum-Backend.</p>
+        <div class="option-list">
+          <button class="option option--active" type="button">
+            BLAST.tv Paris Major 2023
+            <span class="option__meta">Paris • Accor Arena</span>
+          </button>
+          <button class="option" type="button">
+            PGL CS2 Major Copenhagen 2024
+            <span class="option__meta">Kopenhagen • Royal Arena</span>
+          </button>
+          <button class="option" type="button">
+            IEM Cologne 2023
+            <span class="option__meta">Köln • Lanxess Arena</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="card__title">Tag & Bereich</h2>
+
+        <div class="fieldset">
+          <label class="fieldset__label">Tag</label>
+          <div class="pill-row">
+            <button class="pill pill--active" type="button">Finale • So, 21.05.</button>
+            <button class="pill" type="button">Halbfinale • Sa, 20.05.</button>
+            <button class="pill" type="button">Viertelfinale • Fr, 19.05.</button>
+          </div>
+        </div>
+
+        <div class="fieldset">
+          <label class="fieldset__label">Bereich</label>
+          <div class="pill-row">
+            <button class="pill" type="button">Stehplatz</button>
+            <button class="pill pill--active" type="button">Unterrang</button>
+            <button class="pill" type="button">Oberrang</button>
+            <button class="pill" type="button">VIP-Lounge</button>
+          </div>
+        </div>
+
+        <div class="fieldset">
+          <label class="fieldset__label">Anzahl Tickets</label>
+          <div class="counter">
+            <button class="counter__btn" type="button">−</button>
+            <div class="counter__value">2</div>
+            <button class="counter__btn" type="button">+</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ПРАВАЯ КОЛОНКА: РЕЗЮМЕ И ПСЕВДО-ОПЛАТА -->
+    <aside class="tickets-main__right">
+      <section class="card card--summary">
+        <h2 class="card__title">Zusammenfassung</h2>
+
+        <div class="summary-row">
+          <span class="summary-label">Turnier</span>
+          <span class="summary-value">BLAST.tv Paris Major 2023</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Tag</span>
+          <span class="summary-value">Finale • So, 21.05.</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Bereich</span>
+          <span class="summary-value">Unterrang</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Tickets</span>
+          <span class="summary-value">2</span>
+        </div>
+
+        <hr class="summary-divider" />
+
+        <div class="summary-row summary-row--total">
+          <span class="summary-label">Gesamt</span>
+          <span class="summary-value summary-value--total">€ 140,00</span>
+        </div>
+
+        <button class="summary-btn" type="button">
+          Zur Kasse (Demo)
+        </button>
+
+        <p class="summary-note">
+          Dies ist nur eine Demo-Ansicht für UX / UI. Hier könnte später ein echter Checkout-Prozess eingebunden werden.
+        </p>
+      </section>
+
+      <section class="card card--info">
+        <h3 class="card__title">Hinweise</h3>
+        <ul class="info-list">
+          <li>Tickets sind personalisiert und nicht übertragbar (Demo-Text).</li>
+          <li>E-Tickets werden per E-Mail versendet.</li>
+          <li>Zutritt nur mit gültigem Ausweisdokument.</li>
+        </ul>
+      </section>
+    </aside>
+  </main>
+</div>

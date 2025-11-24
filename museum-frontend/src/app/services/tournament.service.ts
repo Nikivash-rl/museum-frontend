@@ -30,6 +30,12 @@ export class TournamentService {
     );
   }
 
+  getTournamentById(id: string): Observable<Tournament | null> {
+    return this.getAllTournaments().pipe(
+      map(list => list.find(t => t.id === id) ?? null)
+    );
+  }
+
   getTournamentsGroupedByYear(): Observable<TournamentYearGroup[]> {
     return this.getAllTournaments().pipe(
       map(list => {

@@ -1,0 +1,56 @@
+<header class="site-header">
+  <div class="container">
+    <a class="brand" routerLink="/" (click)="closeMenu()">
+      <span class="brand__title">Museum der Counter-Strike-Turniere</span>
+    </a>
+
+    <nav class="nav-desktop">
+      <a
+        class="nav-link"
+        *ngFor="let item of navItems"
+        [routerLink]="item.path"
+      >
+        {{ item.label }}
+      </a>
+
+      <button
+        class="auth-btn"
+        type="button"
+        (click)="toggleAuth()"
+        [attr.aria-label]="isAuthenticated ? 'Profil' : 'Anmelden'"
+      >
+        {{ isAuthenticated ? 'Profil' : 'Anmelden' }}
+      </button>
+    </nav>
+
+    <button
+      class="burger"
+      type="button"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="isMenuOpen"
+      aria-controls="mobile-menu"
+      aria-label="Меню"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav
+    class="nav-mobile"
+    [class.nav-mobile--open]="isMenuOpen"
+    id="mobile-menu"
+  >
+    <a
+      class="nav-mobile__link"
+      *ngFor="let item of navItems"
+      [routerLink]="item.path"
+      (click)="closeMenu()"
+    >
+      {{ item.label }}
+    </a>
+
+    <button class="nav-mobile__auth" type="button" (click)="toggleAuth(); closeMenu()">
+      {{ isAuthenticated ? 'Profil' : 'Anmelden' }}
+    </button>
+  </nav>
+</header>
